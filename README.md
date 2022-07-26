@@ -1,5 +1,5 @@
 # jUtils
-A series of functions I use for analyzing data
+A variety of miscellaneous functions I use to analyze data.
 
 ## plotD
 __jUtils.plotD(df, v, color = "blue", scale = None, title = "", xLabel = "", yLabel = "density", width= 600, height = 600)__
