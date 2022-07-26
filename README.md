@@ -77,3 +77,32 @@ print(resultsDF)
 ```
 
 
+## classThres
+__classThres(Y,X=None,p=None,model=None,title='Classification Thresholds',width=600,height=600)__
+
+Uses Altair to plot the accuracy, precision, and recall at multiple classification thresholds for a machine learning model. 
+
+### Parameters:
+* Y = labels in the form of a pandas column or numpy array
+* X = feature vector (numpy or pandas) for the classifier/model. If X is blank, p must be specified.
+* p = vector (numpy of pandas) of probability estimates. Use this parameter if the model's predictions are already calculated.
+* model = takes a trained classifier with the .predict_proba method. Use this parameter if the model's predictions are not yet calculated, will calculate p for you. 
+* title  = string of the title for the plot.
+* width = int for the width of the plot.
+* height = int for the height of the plot.
+
+If the parameter X is passed, the p parameter does not need to be, but the model parameter must be passed.
+Basically, use the X and model parameters or use the p parameter.
+
+### Example:
+```
+from jUtils import classThres
+chart = classThres(Y = df['labels'], p = df['pred'])
+```
+```
+from jUtils import classThres
+chart = classThres(Y = df['labels'], X = featureVector, model = CLF)
+```
+
+![example4](https://github.com/darkcon3000/jUtils/blob/master/example4.jpg?raw=true)
+
