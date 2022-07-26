@@ -27,7 +27,7 @@ import pandas as pd
 from jUtils import plotD
 df = pd.read_csv('example.csv')
 chart = plotD(df, 'Compound_x', 'red', scale = True, title = 'VADER Compound Score', xLabel='Compound Score')
-chart
+chart.save('chart.html')
 ```
 ![example1](https://github.com/darkcon3000/jUtils/blob/master/example1.jpg?raw=true)
 
@@ -55,7 +55,7 @@ import pandas as pd
 from jUtils import multiPlotD as mpd
 df = pd.read_csv('example.csv')
 chart = mpd(df,cols,varNames='Syuzhet Metrics',title='Syuzhet Post Metrics')
-chart
+chart.save('chart.html')
 ```
 ![example12](https://github.com/darkcon3000/jUtils/blob/master/example2.jpg?raw=true)
 
@@ -107,6 +107,7 @@ import pandas as pd
 from jUtils import classThres
 df = pd.read_csv('example.csv')
 chart = classThres(Y = df['labels'], p = df['pred'])
+chart.save('chart.html')
 ```
 ```py
 import pandas as pd
@@ -117,6 +118,7 @@ X = df.drop(['label'],axis=1)
 Y = df['label']
 clf = LogisticRegression().fit(X, Y)
 chart = classThres(Y = Y, X = X, model = clf)
+chart.save('chart.html')
 ```
 
 ![example4](https://github.com/darkcon3000/jUtils/blob/master/example4.jpg?raw=true)
