@@ -147,7 +147,7 @@ Returns a dataframe with the text, ID, and sentiment analysis features.
 
 ### Parameters:
 * df = takes a pandas dataframe.
-* comment = columne name (string) of the column with the text to be analyzed. 
+* comment = column name (string) of the column with the text to be analyzed. 
 * key = takes the ID column so the dataframe retuned from this function can be merged back to original dataframe. Index can be passed here.
 
 ### Example:
