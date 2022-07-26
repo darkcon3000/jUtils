@@ -65,10 +65,11 @@ multiPlotD uses Altair to create density plots for multiple variables/columns wi
 import pandas as pd
 from jUtils import multiPlotD as mpd
 df = pd.read_csv('example.csv')
+cols = ['angerS_x','anticipation_x', 'disgust_x', 'fear_x', 'joy_x', 'sadness_x', 'surprise_x','trust_x']
 chart = mpd(df,cols,varNames='Syuzhet Metrics',title='Syuzhet Post Metrics')
 chart.save('chart.html')
 ```
-![example12](https://github.com/darkcon3000/jUtils/blob/master/example2.jpg?raw=true)
+![example2](https://raw.githubusercontent.com/darkcon3000/jUtils/main/example2.png)
 
 ## ttest
 __jUtils.ttest(columns,df1,df2,n=100000,pvalue=0.05)__
@@ -93,6 +94,7 @@ columns = ['variable1','variable2','variable3']
 resultsDF = ttest(columns,df1,df2)
 print(resultsDF)
 ```
+![example3](https://raw.githubusercontent.com/darkcon3000/jUtils/main/example3.png)
 
 
 ## classThres
@@ -131,8 +133,7 @@ clf = LogisticRegression().fit(X, Y)
 chart = classThres(Y = Y, X = X, model = clf)
 chart.save('chart.html')
 ```
-
-![example4](https://github.com/darkcon3000/jUtils/blob/master/example4.jpg?raw=true)
+![visualization (101)](https://user-images.githubusercontent.com/16627135/180933820-75731650-c8b1-4269-8946-b663d232464d.png)
 
 ## sentimentAnalysis
 __sentimentAnalysis(df, comment, key)__
@@ -159,3 +160,5 @@ from jUtils import sentimentAnalysis as sa
 sentimentDF = sa(df,'selftext',df.index)
 print(sdf)
 ```
+
+
