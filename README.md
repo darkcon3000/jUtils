@@ -100,7 +100,7 @@ print(resultsDF)
 ## classThres
 __classThres(Y,X=None,p=None,model=None,title='Classification Thresholds',width=600,height=600)__
 
-Uses Altair to plot the accuracy, precision, and recall at multiple classification thresholds for a machine learning model. 
+Uses Altair to plot the accuracy, precision, recall, F1 Score, and ROC AUC Scores at multiple classification thresholds for a machine learning model. 
 
 ### Parameters:
 * Y = labels in the form of a pandas column or numpy array
@@ -131,7 +131,8 @@ clf = LogisticRegression(random_state=0).fit(X, y)
 chart = classThres(Y = y, X = X, model = clf)
 chart.save('chart.html')
 ```
-![visualization - 2022-07-26T001032 750](https://user-images.githubusercontent.com/16627135/180936003-42ee3e95-8f23-4807-a216-86a94fab3046.png)
+![visualization - 2022-07-26T001611 508](https://user-images.githubusercontent.com/16627135/180936790-cfc66242-bed6-4cbb-a741-9b6ec89c8793.png)
+
 
 
 ## sentimentAnalysis
