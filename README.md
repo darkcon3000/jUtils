@@ -39,7 +39,8 @@ df = pd.read_csv('example.csv')
 chart = plotD(df, 'Compound_x', 'red', scale = True, title = 'VADER Compound Score', xLabel='Compound Score')
 chart.save('chart.html')
 ```
-![example1](https://github.com/darkcon3000/jUtils/blob/master/example1.png?raw=true)
+
+![example1](https://raw.githubusercontent.com/darkcon3000/jUtils/main/example1.png)
 
 ## multiPlotD
 __jUtils.multiPlotD(df,cols,varNames='Variables',color='set1',opacity=0.75,title="",scale=None,width=600,height=600)__
