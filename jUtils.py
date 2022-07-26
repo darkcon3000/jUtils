@@ -4,19 +4,21 @@ import numpy as np
 import altair as alt
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from analyzer import Analyzer
-from bs4 import BeautifulSoup
-from nltk.corpus import stopwords
-import re, os
-import nltk
-from tqdm import tqdm
-import progressbar
+#from bs4 import BeautifulSoup
+#from nltk.corpus import stopwords
+#import re, os
+# import nltk
+# from tqdm import tqdm
+# import progressbar
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
-nltk.download('vader_lexicon')
-nltk.download('punkt')
-nltk.download('stopwords')
-__author__ = 'whatknows'
+from sklearn.metrics import f1_score
+from sklearn.metrics import roc_auc_score
+# nltk.download('vader_lexicon')
+# nltk.download('punkt')
+# nltk.download('stopwords')
+# __author__ = 'whatknows'
 
 def plotD(df, v, color = "blue", scale = None, title = "", xLabel = "", yLabel = "density", width= 600, height = 600):
     '''Function for plotting density distributions of a single variable in Altair.
@@ -70,7 +72,7 @@ def plotD(df, v, color = "blue", scale = None, title = "", xLabel = "", yLabel =
             width= width,
             height = height
         )
-        
+
         return chart
     else:
         chart = alt.Chart(df).transform_density(
@@ -111,7 +113,7 @@ def multiPlotD(df,cols,varNames='Variables',color='set1',opacity=0.75,title="",s
     '''
     alt.data_transformers.disable_max_rows()
     vN = varNames+":N"
-    if scale == None:
+    if scale is None:
         chart = alt.Chart(df).transform_fold(
             cols,
             as_ = [varNames, 'value']
@@ -204,7 +206,9 @@ def classThres(Y,X=None,p=None,model=None,title='Classification Thresholds',widt
     recall = []
     precision = []
     threshold = []
-    if p == None:
+    f1 = []
+    roc = []
+    if p is None:
         p = model.predict_proba(X)[:,1:]
 
     for i in range(50,100,5):
@@ -213,17 +217,19 @@ def classThres(Y,X=None,p=None,model=None,title='Classification Thresholds',widt
         accuracy.append(accuracy_score(Y, pred))
         recall.append(recall_score(Y, pred))
         precision.append(precision_score(Y, pred))
+        f1.append(f1_score(Y, pred))
+        roc.append(roc_auc_score(Y,pred))
         threshold.append(i)
 
-    decision = pd.DataFrame({'Threshold':threshold,'Accuracy':accuracy,'Precision':precision,'Recall':recall})
-    source = pd.melt(decision, id_vars=['Threshold'], value_vars=['Accuracy','Precision','Recall'])
+    decision = pd.DataFrame({'Threshold':threshold,'Accuracy':accuracy,'Precision':precision,'Recall':recall,'F1 Score':f1,'ROC AUC Score':roc})
+    source = pd.melt(decision, id_vars=['Threshold'], value_vars=['Accuracy','Precision','Recall','F1 Score','ROC AUC Score'])
 
     lines = (
     alt.Chart(source)
     .mark_line(point=alt.OverlayMarkDef())
     .encode(
-        x="Threshold",
-        y="value",
+        x=alt.X("Threshold",scale=alt.Scale(domain=(0.5,1.0))),
+        y=alt.Y("value",scale=alt.Scale(domain=(0.0,1.0))),
         color="variable",
         strokeDash = 'variable',
         tooltip = ['variable','Threshold','value']
