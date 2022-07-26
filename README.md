@@ -33,6 +33,8 @@ chart
 
 ## multiPlotD
 __jUtils.multiPlotD(df,cols,varNames='Variables',color='set1',opacity=0.75,title="",scale=None,width=600,height=600)__
+
+
 multiPlotD uses Altair to create density plots for multiple variables/columns within the same pandas dataframe. 
 
 
