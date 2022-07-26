@@ -22,8 +22,10 @@ plotD uses Altair to create a density plot of one column/variable from a pandas 
 * height = int for the height of the plot
   
 ### Example:
-```
+```py
+import pandas as pd
 from jUtils import plotD
+df = pd.read_csv('example.csv')
 chart = plotD(df, 'Compound_x', 'red', scale = True, title = 'VADER Compound Score', xLabel='Compound Score')
 chart
 ```
@@ -46,8 +48,10 @@ multiPlotD uses Altair to create density plots for multiple variables/columns wi
 * height = int for the height of the plot. 
 
 ### Example:
-```
+```py
+import pandas as pd
 from jUtils import multiPlotD as mpd
+df = pd.read_csv('example.csv')
 chart = mpd(df,cols,varNames='Syuzhet Metrics',title='Syuzhet Post Metrics')
 chart
 ```
@@ -67,10 +71,11 @@ Returns a dataframe with the variables being tested, the t statistic, the raw p 
 
 ### Example:
 
-```
+```py
+import pandas as pd
 from jUtils import ttest
-df1 = pd.read_csv('randomData.csv')
-df1 = pd.read_csv('exampleData.csv')
+df1 = pd.read_csv('treatment1.csv')
+df1 = pd.read_csv('treatment2.csv')
 columns = ['variable1','variable2','variable3']
 resultsDF = ttest(columns,df1,df2)
 print(resultsDF)
@@ -95,14 +100,47 @@ If the parameter X is passed, the p parameter does not need to be, but the model
 Basically, use the X and model parameters or use the p parameter.
 
 ### Example:
-```
+```py
+import pandas as pd
 from jUtils import classThres
+df = pd.read_csv('example.csv')
 chart = classThres(Y = df['labels'], p = df['pred'])
 ```
-```
+```py
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
 from jUtils import classThres
-chart = classThres(Y = df['labels'], X = featureVector, model = CLF)
+df = pd.read_csv('example.csv')
+X = df.drop(['label'],axis=1)
+Y = df['label']
+clf = LogisticRegression().fit(X, Y)
+chart = classThres(Y = Y, X = X, model = clf)
 ```
 
 ![example4](https://github.com/darkcon3000/jUtils/blob/master/example4.jpg?raw=true)
 
+## sentimentAnalysis
+__sentimentAnalysis(df, comment, key)__
+
+Performs VADER and LIWC sentiment analysis on a pandas dataframe with a column of texts to be analyzed.
+Requires LIWC to be installed. 
+Returns a dataframe with the text, ID, and sentiment analysis features.
+
+### Parameters:
+* df = takes a pandas dataframe.
+* comment = columne name (string) of the column with the text to be analyzed. 
+* key = takes the ID column so the dataframe retuned from this function can be merged back to original dataframe. Index can be passed here.
+
+### Example:
+
+```py
+import pandas as pd
+from jUtils import sentimentAnalysis as sa
+sentimentDF = sa(df,'selftext','ID')
+combinedDF = pd.merge(df,sentimentDF,on='ID')
+```
+```py
+from jUtils import sentimentAnalysis as sa
+sentimentDF = sa(df,'selftext',df.index)
+print(sdf)
+```
