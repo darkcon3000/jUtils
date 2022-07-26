@@ -123,17 +123,16 @@ chart = classThres(Y = df['labels'], p = df['pred'])
 chart.save('chart.html')
 ```
 ```py
-import pandas as pd
-from sklearn.linear_model import LogisticRegression
 from jUtils import classThres
-df = pd.read_csv('example.csv')
-X = df.drop(['label'],axis=1)
-Y = df['label']
-clf = LogisticRegression().fit(X, Y)
-chart = classThres(Y = Y, X = X, model = clf)
+from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+X, y = load_breast_cancer(return_X_y=True)
+clf = LogisticRegression(random_state=0).fit(X, y)
+chart = classThres(Y = y, X = X, model = clf)
 chart.save('chart.html')
 ```
-![visualization (101)](https://user-images.githubusercontent.com/16627135/180933820-75731650-c8b1-4269-8946-b663d232464d.png)
+![visualization - 2022-07-26T001032 750](https://user-images.githubusercontent.com/16627135/180936003-42ee3e95-8f23-4807-a216-86a94fab3046.png)
+
 
 ## sentimentAnalysis
 __sentimentAnalysis(df, comment, key)__
