@@ -1,7 +1,9 @@
 # jUtils
 A variety of miscellaneous functions I use to analyze data. These functions are designed for use within a Jupyter notebook and/or Anaconda. 
 
-### Requirements:
+### Instalation:
+Download the jUtils.py file and put it in the same directory as your project.
+#### Requirements:
 * pandas: https://anaconda.org/anaconda/pandas 
 * scipy: https://anaconda.org/anaconda/scipy
 * numpy: https://anaconda.org/anaconda/numpy
