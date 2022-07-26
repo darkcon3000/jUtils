@@ -101,6 +101,7 @@ print(resultsDF)
 __classThres(Y,X=None,p=None,model=None,title='Classification Thresholds',width=600,height=600)__
 
 Uses Altair to plot the accuracy, precision, recall, F1 Score, and ROC AUC Scores at multiple classification thresholds for a machine learning model. 
+Though not interacatable on this page, the chart is fully interactable in the Jupyter Notebook or .html file; enabling drag, pan, and zoom, in addition to value tooltips. 
 
 ### Parameters:
 * Y = labels in the form of a pandas column or numpy array
