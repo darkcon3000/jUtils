@@ -1,5 +1,15 @@
 # jUtils
-A variety of miscellaneous functions I use to analyze data.
+A variety of miscellaneous functions I use to analyze data. These functions are designed for use within a Jupyter notebook and/or Anaconda. 
+
+### Requirements:
+* pandas: https://anaconda.org/anaconda/pandas 
+* scipy: https://anaconda.org/anaconda/scipy
+* numpy: https://anaconda.org/anaconda/numpy
+* altair: https://anaconda.org/conda-forge/altair
+* scikit learn: https://anaconda.org/anaconda/scikit-learn
+* VADER: https://anaconda.org/conda-forge/vadersentiment
+* LIWC: https://www.liwc.app/
+   * A lite version of this module without LIWC installation can be found here: (WIP)
 
 ## plotD
 __jUtils.plotD(df, v, color = "blue", scale = None, title = "", xLabel = "", yLabel = "density", width= 600, height = 600)__
