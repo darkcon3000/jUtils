@@ -161,7 +161,7 @@ combinedDF = pd.merge(df,sentimentDF,on='ID')
 ```py
 from jUtils import sentimentAnalysis as sa
 sentimentDF = sa(df,'selftext',df.index)
-print(sdf)
+print(sentimentDF)
 ```
 
 
